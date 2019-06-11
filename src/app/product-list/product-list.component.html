@@ -1,0 +1,34 @@
+<h2>Products</h2>
+
+<!-- *ng "structural directive" to introduce js function -->
+<!-- ngFor (like map) to display each product of the list the same way + to give an Id to each of them -->
+<div *ngFor="let product of products; index as productId">
+
+  <!-- {{}} "interpolation" to display props as text-->
+  <!-- [] "property binding" to assign a property as value to a variable in a template -->
+  <!-- If the route is dynamic (:id) then the routerLink expects an Array ; If it is static, then a string -->
+    <h3>
+      <a [title]="product.name + ' details'"
+      [routerLink]="['/products', productId]"
+      >
+      {{product.name}}
+      </a>
+    </h3>
+
+<!-- ngIf to display a description only if the product as one -->
+    <p *ngIf="product.description">
+      Description: {{product.description}}
+    </p>
+
+<!-- (click) "event binding" to bind the click event to share() event defined in .ts -->
+    <button (click)="share()">
+      Share
+    </button>
+
+<!-- call the product-alerts component to display it inside the product-list component based on the price of the input (here product)-->
+<!-- bind it to the onNotify method to send output to the parent -->
+    <app-product-alerts 
+    [product]="product" 
+    (notify)="onNotify()">
+    </app-product-alerts>
+</div>
