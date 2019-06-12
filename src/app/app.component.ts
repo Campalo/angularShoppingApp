@@ -1,16 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  items: Observable<any[]>;
-  constructor(private db: AngularFirestore) {}
-  ngOnInit() {
-    this.items = this.db.collection('items').valueChanges();
-  }
+export class AppComponent {
+  constructor() {}
 }
