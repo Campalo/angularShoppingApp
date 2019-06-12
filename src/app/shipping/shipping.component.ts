@@ -14,6 +14,9 @@ export class ShippingComponent implements OnInit {
 
   ngOnInit() {
     //go into the db in firebase,then into the 'shippingCosts' collection, and update the value if there is a change
-    this.shippingCosts = this.db.collection('shippingCosts').valueChanges();
+    //"query collection" to order by descending price
+    this.shippingCosts = this.db
+      .collection('shippingCosts', ref => ref.orderBy('price', 'desc'))
+      .valueChanges();
   }
 }
